@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}  <!-- Add this line -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deena Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+	<div class="header-content">
+       <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="My Profile Picture">
+        </div>
+        <h1>Deena Faria</h1>
+		</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+      <div class="main-content">
+	  <div class="sidebar">
+        <aside class="sidebar">
+		<section id="about" class="about-section">
+    <h2>About Me</h2>
+    <div class="about-content">
+        <img src="{% static 'images/profile.jpg' %}" alt="My Profile Picture" class="about-image">
+        <p>{{ about.content }}</p>
+    </div>
+</section>
+            <section id="contact">
+			
+                <h2>Contact</h2>
+                <p><i class="fas fa-map-marker-alt"></i> Address: {{ contact.address }}</p>
+                <p><i class="fas fa-phone"></i> Phone: {{ contact.phone }}</p>
+                <p><i class="fas fa-envelope"></i> Email: {{ contact.email }}</p>
+                {% if contact.website %}
+                <p><i class="fas fa-globe"></i> Website: <a href="{{ contact.website }}" target="_blank">{{ contact.website }}</a></p>
+                {% endif %}
+                {% if contact.linkedin %}
+                <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="{{ contact.linkedin }}" target="_blank">{{ contact.linkedin }}</a></p>
+                {% endif %}
+                {% if contact.github %}
+                <p><i class="fab fa-github"></i> GitHub: <a href="{{ contact.github }}" target="_blank">{{ contact.github }}</a></p>
+                {% endif %}
+            </section>
+        </aside>
+		</div>
+		<div class="others">
+
+
+    
+    <section id="works" class="work-horizontal">
+        <h2>My Works</h2>
+        <ul>
+            {% for work in works %}
+            <li>
+                <h3>{{ work.title }}</h3>
+                <p>{{ work.description }}</p>
+            
+                {% if work.url %}
+                <a href="{{ work.url }}" target="_blank">View Project</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="gallery" class="gallery-horizontal">
+        <h2>Gallery</h2>
+        <ul>
+            {% for item in gallery %}
+            <li>
+                <h3>{{ item.title }}</h3>
+                <img src="{{ item.image.url }}" alt="{{ item.title }}">
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <section id="comments">
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <p><strong>{{ comment.name }}</strong> ({{ comment.created_at }}): {{ comment.content }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Leave a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+	</div>
+</div>
+    <footer>
+<p>&copy; 2024 Deena Faria. All rights reserved.</p>
+    </footer>
+</body>
+</html>
