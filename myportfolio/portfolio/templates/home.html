@@ -7,6 +7,8 @@
     <title>Deena Portfolio</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
+
 </head>
 <body>
     <header>
@@ -85,8 +87,10 @@
         </ul>
     </section>
     
-    <section id="comments">
-        <h2>Comments</h2>
+<section id="comments-section">
+    <h2>Comments</h2>
+    <button id="toggle-comments-btn">Show Comments</button>
+    <div id="comments-list" style="display: none;">
         <ul>
             {% for comment in comments %}
             <li>
@@ -94,18 +98,33 @@
             </li>
             {% endfor %}
         </ul>
+    </div>
+    <h3>Leave a Comment</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</section>
 
-        <h3>Leave a Comment</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    </section>
 	</div>
 </div>
     <footer>
 <p>&copy; 2024 Deena Faria. All rights reserved.</p>
     </footer>
+	
+<script>
+document.getElementById('toggle-comments-btn').addEventListener('click', function() {
+    var commentsList = document.getElementById('comments-list');
+    if (commentsList.style.display === 'none' || commentsList.style.display === '') {
+        commentsList.style.display = 'block';
+        this.textContent = 'Hide Comments';
+    } else {
+        commentsList.style.display = 'none';
+        this.textContent = 'Show Comments';
+    }
+});
+</script>
+
 </body>
 </html>

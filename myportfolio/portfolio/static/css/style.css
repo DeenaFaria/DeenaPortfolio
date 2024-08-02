@@ -75,18 +75,14 @@ section {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#works, .gallery-horizontal ul {
+.gallery-horizontal ul {
     display: flex;
     overflow-x: scroll;
     gap: 20px;
     padding: 20px 0;
 }
 
-#works ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
+
 
 .work-item, .gallery-horizontal li {
     background: #fff;
@@ -101,18 +97,30 @@ section {
     max-height: 300px;  /* Adjust the size as needed */
 }
 
-.work-horizontal img {
-    max-height: 300px;  /* Adjust the size as needed */
+
+#works {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; /* Center-align the title */
+	overflow-x: scroll;
 }
 
-/* Works Section Styles */
+#works h2 {
+    margin-bottom: 20px; /* Add space between the title and the content */
+}
+
 #works ul {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center; /* Center-align the boxes */
+    padding: 0; /* Remove padding if needed */
 }
 
-.work-item {
+#works li {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -120,14 +128,31 @@ section {
     padding: 20px;
     flex: 1 1 calc(50% - 40px);  /* Two items per row */
     max-width: calc(50% - 40px);  /* Two items per row */
+    min-width: 300px; /* Minimum width for the boxes */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
-.work-item h3 {
+#works li h3 {
     margin-bottom: 10px;
 }
 
-.work-item p {
+#works li p {
     margin-bottom: 20px;
+}
+
+
+#works li a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background: #007BFF;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+#works li a:hover {
+    background: #0056b3;
 }
 
 /* About Section Styles */
@@ -148,6 +173,7 @@ section {
 
 
 .about-image {
+	align-items: center;
     width: 150px;
     border-radius: 50%;
     flex-shrink: 0;
@@ -239,6 +265,7 @@ footer p i {
     margin-right: 10px;
 }
 
+
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     .header-content {
@@ -252,7 +279,7 @@ footer p i {
     }
 
     nav ul {
-        flex-direction: column;
+       
         gap: 5px;
     }
 
@@ -278,6 +305,15 @@ footer p i {
     .logo img {
         width: 80px;  /* Adjust the size as needed */
     }
+
+    #works ul {
+        gap: 10px;
+    }
+
+    #works li {
+        flex: 1 1 calc(50% - 20px); /* Two items per row */
+        max-width: calc(50% - 20px); /* Two items per row */
+    }
 }
 
 @media (max-width: 480px) {
@@ -300,5 +336,22 @@ footer p i {
 
     .about-image {
         width: 100px;
+    }
+
+    #works h2 {
+        font-size: 1.5rem;
+    }
+
+    #works li {
+        flex: 1 1 100%; /* Single item per row */
+        max-width: 100%; /* Single item per row */
+    }
+
+    #works li h3 {
+        font-size: 1.25rem;
+    }
+
+    #works li p {
+        font-size: 0.9rem;
     }
 }
